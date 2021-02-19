@@ -1,0 +1,7 @@
+PREFIX='??'
+
+PGUSER='??'
+PGPASS='1234'
+PGHOST='localhost'
+PGPORT=5432
+DBNAME='??'
