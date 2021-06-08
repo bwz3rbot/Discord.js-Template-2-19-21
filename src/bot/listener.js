@@ -4,7 +4,7 @@ module.exports =
         /* 
         https://vindicatorbot.com/commands/
         */
-        const command = require('../util/parse')(message.content);
+        const command = require('../util/command')(message.content);
         if (command) {
             /* Admin Commands */
             if (require('../util/isAdmin')(message.member)) {
