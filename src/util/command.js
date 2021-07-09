@@ -7,7 +7,9 @@ const build_args =
             if (arg.includes(":")) {
                 const a = arg.split(':');
                 argarray.set(a[0], a[1]);
-            } 
+            } else {
+                argarray.set(arg, true);
+            }
         });
         return argarray;
     }
