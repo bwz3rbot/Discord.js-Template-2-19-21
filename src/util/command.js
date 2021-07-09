@@ -1,17 +1,16 @@
 /* Build Args */
-const build_args =
+const buildArgs =
     (args) => {
-        const argarray = new Map();
+        const argArr = new Map();
         args.forEach((arg) => {
-            console.log("arg: ", arg);
             if (arg.includes(":")) {
                 const a = arg.split(':');
-                argarray.set(a[0], a[1]);
+                argArr.set(a[0], a[1]);
             } else {
-                argarray.set(arg, true);
+                argArr.set(arg, true);
             }
         });
-        return argarray;
+        return argArr;
     }
 const prefix = process.env.PREFIX || `+`;
 module.exports =
@@ -19,19 +18,19 @@ module.exports =
         message = message.trim();
         const pref = message.slice(0, prefix.length);
         if (pref != prefix) {
-            return false;
+            return;
         }
-        const str = message.split(/ /g);
-        if (str.length === 1) { // If no args, return command
+        const command = message.split(/ /g);
+        if (command.length === 1) { // If no args, return command
             return {
-                directive: str.slice(0, 1)[0].slice(prefix.length),
+                directive: command[0].slice(prefix.length),
                 args: new Map()
             }
         }
 
-        const directive = str.slice(0, 1)[0].slice(prefix.length);
-        const a = str.slice(1, str.length);
-        const args = build_args(a);
+        const directive = command[0].slice(prefix.length);
+        const a = command.slice(1, command.length);
+        const args = buildArgs(a);
         return {
             directive,
             args
